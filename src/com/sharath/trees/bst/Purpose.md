@@ -14,8 +14,8 @@ and the complexities will be same as linked list. Hence always try to keep a BST
 **It is a tree in which for each node, the value of all nodes in the left subtree is lesser or equal to that node and the value of all nodes in the right subtree is greater than that node.**
 
 #### More definitions:
-**Balanced BST:** A BST is said to be balanced if the difference b/w the heights of left subtree and right subtree is not greater than 1.
-**Height of a tree:** Number of edges in the longest path from the root to the leaf.
+**Balanced BST:** A BST is said to be balanced if the difference b/w the heights of left subtree and right subtree is not greater than 1.    
+**Height of a tree:** Number of edges in the longest path from the root to the leaf.    
 **Depth of a node:** Don't confuse depth with height. Depth is for a specific node and height is for the entire tree. So depth of a node is the number of edges in the path from root to that node.
 
 #### Tree traversals:
