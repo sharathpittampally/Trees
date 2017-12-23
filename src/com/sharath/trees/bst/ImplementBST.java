@@ -2,6 +2,7 @@ package com.sharath.trees.bst;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 import com.sharath.trees.bst.model.Node;
 
@@ -32,8 +33,16 @@ public class ImplementBST
         inOrderTraversal(root);
         System.out.println();
         System.out.println();
+        System.out.println("Iterative inorder traversal: ");
+        iterativeInOrderTraversal(root);
+        System.out.println();
+        System.out.println();
         System.out.println("PostOrder traversal: ");
         postOrderTraversal(root);
+        System.out.println();
+        System.out.println();
+        System.out.println("Iterative post order traversal: ");
+        iterativePostOrderTraversal(root);
         System.out.println();
         System.out.println();
         System.out.println("Level order traversal: ");
@@ -153,6 +162,28 @@ public class ImplementBST
         inOrderTraversal(root.getRight());
     }
 
+    private static void iterativeInOrderTraversal(final Node root)
+    {
+        if (root == null)
+            return;
+        final Stack<Node> s = new Stack<>();
+        if (root.getRight() != null)
+            s.push(root.getRight());
+        s.push(root);
+        while (!s.isEmpty())
+        {
+            if (s.peek().getLeft() != null)
+                s.push(s.peek().getLeft());
+            else
+            {
+                Node top = s.pop();
+                System.out.print(top.getData() + ", ");
+                if (top.getRight() != null)
+                    s.push(top.getRight());
+            }
+        }
+    }
+
     private static void postOrderTraversal(final Node root)
     {
         if (root == null)
@@ -160,6 +191,36 @@ public class ImplementBST
         postOrderTraversal(root.getLeft());
         postOrderTraversal(root.getRight());
         System.out.print(root.getData() + ",");
+    }
+
+    /**
+     * Take two stacks, push root in s1. then while s1 is not empty pop 'x' from
+     * s1 and push x.left and x.right into s1 and x into s2. After s1 is empty
+     * pop all elements from s2.
+     * 
+     * @param root
+     */
+    private static void iterativePostOrderTraversal(final Node root)
+    {
+        if (root == null)
+            return;
+        final Stack<Node> s1 = new Stack<>();
+        final Stack<Node> s2 = new Stack<>();
+
+        s1.push(root);
+        while (!s1.isEmpty())
+        {
+            Node temp = s1.pop();
+            if (temp.getLeft() != null)
+                s1.push(temp.getLeft());
+            if (temp.getRight() != null)
+                s1.push(temp.getRight());
+            s2.push(temp);
+        }
+        while (!s2.isEmpty())
+        {
+            System.out.print(s2.pop().getData() + ", ");
+        }
     }
 
     /**
